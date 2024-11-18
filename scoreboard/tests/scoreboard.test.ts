@@ -1,28 +1,53 @@
-import Scoreboard from "../src/scoreboard"
+import Scoreboard from "../src/Scoreboard";
+import Matches from "../src/Matches";
 
 describe('Scoreboard', () => {
-  test('init', () => {
-    const scoreboard = new Scoreboard();
+  let defaultMatchHandler: Matches;
 
-    expect(scoreboard.showScores().length).toBe(0);
-  });
+  beforeEach(() => {
+    defaultMatchHandler = new Matches();
+  })
 
-  test('start a single game', () => {
-    const scoreboard = new Scoreboard();
+  it('init', () => {
+    const scoreboard = new Scoreboard(defaultMatchHandler);
 
-    scoreboard.startMatch({homeTeam: "Austria", awayTeam: "Germany"})
+    expect(scoreboard.showMatches()).toEqual([])
+  })
 
-    expect(scoreboard.showScores().length).toBe(1);
-  });
+  it('start a new game', () => {
+    const scoreboard = new Scoreboard(defaultMatchHandler);
 
-  test('start and finish multiple games', () => {
-    const scoreboard = new Scoreboard();
+    scoreboard.startMatch("Mexico","Canada");
+    scoreboard.startMatch("Germany","Italy");
 
-    scoreboard.startMatch({homeTeam: "Austria", awayTeam: "Germany"})
-    scoreboard.startMatch({homeTeam: "England", awayTeam: "Hungary"})
-    scoreboard.startMatch({homeTeam: "Spain", awayTeam: "Portugal"})
-    scoreboard.finishMatch({homeTeam: "England", awayTeam: "Hungary"})
+    expect(scoreboard.showMatches().length).toBe(2);
+  })
 
-    expect(scoreboard.showScores().length).toBe(2);
-  });
-});
+  it('finish an existing game', () => {
+    const scoreboard = new Scoreboard(new Matches());
+
+    scoreboard.startMatch("Mexico","Canada");
+    scoreboard.startMatch("Germany","Italy");
+    scoreboard.finishMatch("Mexico","Canada");
+
+    expect(scoreboard.showMatches().length).toEqual(1);
+  })
+
+  it('finish an non existing game', () => {
+    const scoreboard = new Scoreboard(new Matches());
+
+    scoreboard.startMatch("Mexico","Canada");
+    scoreboard.startMatch("Germany","Italy");
+
+    expect(() => scoreboard.finishMatch("Austria","Canada")).toThrow(Error);
+  })
+
+  it('finish an non existing game', () => {
+    const scoreboard = new Scoreboard(new Matches());
+
+    scoreboard.startMatch("Mexico","Canada");
+    scoreboard.updateMatch("Mexico","Canada",1,9)
+
+    expect(scoreboard.showMatches()[0]).toContain("Mexico : 1 - Canada : 9")
+  })
+})
