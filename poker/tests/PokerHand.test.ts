@@ -1,5 +1,5 @@
 import PokerHand from "../src/PokerHand";
-import {PokerRulesFactory} from "../src/factories/CardRuleFactory";
+import {PokerRulesFactory} from "../src/factories/CardRulesFactory";
 
 describe("Poker Hand", () => {
   const rulesFactory = new PokerRulesFactory();

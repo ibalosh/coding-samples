@@ -1,6 +1,6 @@
 import {Card, PokerCard, PokerCardIdentifier} from './PokerCard'
 import {CardRule} from "./rules";
-import {CardRulesFactory} from "./factories/CardRuleFactory";
+import {CardRulesFactory} from "./factories/CardRulesFactory";
 
 export interface Hand {
   maxNumberOfCards: number;
