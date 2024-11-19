@@ -1,13 +1,19 @@
-import {CardRule, StraightFlush, FourOfKind, Flush, Straight, TwoPairs, Pair} from "../rules";
-import {FullHouse} from "../rules/FullHouse";
-import {ThreeOfKind} from "../rules/ThreeOfKind";
-import {HighCard} from "../rules/HighCard";
+import {
+  CardRule,
+  HighCard,
+  StraightFlush,
+  FourOfKind,
+  FullHouse,
+  Flush,
+  Pair,
+  Straight,
+  ThreeOfKind,
+  TwoPairs,
+} from "../rules";
 
 export interface CardRulesFactory {
   createRules(): CardRule[];
 }
-
-
 
 export class PokerRulesFactory implements CardRulesFactory {
   createRules(): CardRule[] {

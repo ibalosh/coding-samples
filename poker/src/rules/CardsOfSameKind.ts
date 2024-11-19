@@ -1,4 +1,4 @@
-import Card from "../Card";
+import {Card} from "../PokerCard";
 import {CardRule} from "./CardRule";
 import {StringNumberPair} from "../models";
 
@@ -11,13 +11,13 @@ export abstract class CardsOfSameKind implements CardRule {
 
   abstract calculateScore(cards: Card[]): number;
 
-  protected hasMultipleNumberOfCardsWithSameValue(cards: Card[], numberOfCards: number): number {
+  protected getCountsOfCardsWithSameValues(cards: Card[], numberOfCards: number): number {
     const cardsGroupedByValue = this.groupCardsByValue(cards);
     return (Object.values(cardsGroupedByValue).filter(values => values === numberOfCards)).length
   }
 
-  protected hasNumberOfCardsWithSameValue(cards: Card[], numberOfCards: number): boolean {
-    return this.hasMultipleNumberOfCardsWithSameValue(cards, numberOfCards) === 1;
+  protected hasCardsWithSameValues(cards: Card[], numberOfCards: number): boolean {
+    return this.getCountsOfCardsWithSameValues(cards, numberOfCards) === 1;
   }
 
   protected groupCardsByValue(cards: Card[]): StringNumberPair {

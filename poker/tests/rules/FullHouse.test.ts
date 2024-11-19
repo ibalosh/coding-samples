@@ -1,12 +1,11 @@
-import Card from "../../src/Card";
-import {FourOfKind, StraightFlush} from "../../src/rules";
+import {PokerCard} from "../../src/PokerCard";
 import {FullHouse} from "../../src/rules/FullHouse";
 
 describe('Full House rule', () => {
 
   test("not satisfy the rule",() => {
     const cards = [
-      new Card("0s"), new Card("0s"), new Card("0s"), new Card("3s"), new Card("4h")
+      new PokerCard("0s"), new PokerCard("0s"), new PokerCard("0s"), new PokerCard("3s"), new PokerCard("4h")
     ]
 
     expect(new FullHouse(7).calculateScore(cards)).toEqual(0);
@@ -14,7 +13,7 @@ describe('Full House rule', () => {
 
   test("satisfy the rule",() => {
     const cards = [
-      new Card("0s"), new Card("0s"), new Card("0s"), new Card("3s"), new Card("3h")
+      new PokerCard("0s"), new PokerCard("0s"), new PokerCard("0s"), new PokerCard("3s"), new PokerCard("3h")
     ]
 
     expect(new FullHouse(7).calculateScore(cards)).toEqual(7);

@@ -1,7 +1,12 @@
 export * from "./CardRule";
-export * from "./StraightFlush";
-export * from "./FourOfKind";
 export * from "./Flush";
-export * from "./Straight";
+export * from "./FourOfKind";
+export * from "./FullHouse"
+export * from "./HighCard";
 export * from "./Pair"
+export * from "./StraightFlush";
+export * from "./Straight";
 export * from "./TwoPairs"
+export * from "./ThreeOfKind"
+
+

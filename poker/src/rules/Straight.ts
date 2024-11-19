@@ -1,4 +1,4 @@
-import Card from "../Card";
+import {Card} from "../PokerCard";
 import {CardRule} from "./CardRule";
 
 export class Straight implements CardRule {

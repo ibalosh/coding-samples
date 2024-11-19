@@ -1,6 +1,6 @@
-import Card from "../Card";
+import {Card} from "../PokerCard";
 
 export interface CardRule {
-  score: number;
+  readonly score: number;
   calculateScore(cards:Card[]): number;
 }

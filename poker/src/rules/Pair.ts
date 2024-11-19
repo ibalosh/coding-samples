@@ -1,6 +1,4 @@
-import Card from "../Card";
-import {CardRule} from "./CardRule";
-import {StringNumberPair} from "../models";
+import {Card} from "../PokerCard";
 import {CardsOfSameKind} from "./CardsOfSameKind";
 
 export class Pair extends CardsOfSameKind{
@@ -9,6 +7,6 @@ export class Pair extends CardsOfSameKind{
   }
 
   calculateScore(cards: Card[]): number {
-    return this.hasNumberOfCardsWithSameValue(cards, 2) ? this.score : 0;
+    return this.hasCardsWithSameValues(cards, 2) ? this.score : 0;
   }
 }

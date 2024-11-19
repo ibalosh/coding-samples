@@ -1,4 +1,4 @@
-import Card from './Card'
+import {Card, PokerCard, PokerCardIdentifier} from './PokerCard'
 import {CardRule} from "./rules";
 import {CardRulesFactory} from "./factories/CardRuleFactory";
 
@@ -20,11 +20,11 @@ export default class PokerHand implements Hand {
     this.cardRules = cardRulesFactory.createRules();
   }
 
-  addCards(cards: string[]) {
+  addCards(cards: PokerCardIdentifier[]) {
     this.validateCards(cards);
 
     for (const card of cards) {
-      this.cards.push(new Card(card));
+      this.cards.push(new PokerCard(card));
     }
   }
 

@@ -1,4 +1,4 @@
-import Card from "../Card";
+import {Card} from "../PokerCard";
 import {CardsOfSameKind} from "./CardsOfSameKind";
 
 export class FourOfKind extends CardsOfSameKind {
@@ -7,6 +7,6 @@ export class FourOfKind extends CardsOfSameKind {
   }
 
   calculateScore(cards: Card[]): number {
-    return this.hasNumberOfCardsWithSameValue(cards,4) ? this.score : 0;
+    return this.hasCardsWithSameValues(cards,4) ? this.score : 0;
   }
 }

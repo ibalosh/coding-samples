@@ -1,11 +1,10 @@
-import Card from "../../src/Card";
-import {ThreeOfKind} from "../../src/rules/ThreeOfKind";
-import {Pair, TwoPairs} from "../../src/rules";
+import {PokerCard} from "../../src/PokerCard";
+import {TwoPairs} from "../../src/rules";
 
-describe('Pair rule', () => {
+describe('Two pair rule', () => {
   test("not satisfy the rule",() => {
     const cards = [
-      new Card("0s"), new Card("1s"), new Card("4s"), new Card("Ts"), new Card("3h")
+      new PokerCard("0s"), new PokerCard("1s"), new PokerCard("4s"), new PokerCard("Ts"), new PokerCard("3h")
     ]
 
     expect(new TwoPairs(2).calculateScore(cards)).toEqual(0);
@@ -13,7 +12,7 @@ describe('Pair rule', () => {
 
   test("satisfy the rule",() => {
     const cards = [
-      new Card("0s"), new Card("0s"), new Card("1s"), new Card("2s"), new Card("2s")
+      new PokerCard("0s"), new PokerCard("0s"), new PokerCard("1s"), new PokerCard("2s"), new PokerCard("2s")
     ]
 
     expect(new TwoPairs(2).calculateScore(cards)).toEqual(2);
