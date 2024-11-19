@@ -1,5 +1,3 @@
-## Task requirements
-
 ### Poker hand 
 
 * We want to find out the score of a poker hand. 
