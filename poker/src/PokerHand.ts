@@ -16,7 +16,7 @@ export default class PokerHand implements Hand {
   }
 
   handCards(cards: PokerCardIdentifier[]) {
-    this.validateCards(cards);
+    this.validateMaxNumberOfCards(cards);
 
     for (const card of cards) {
       this.cards.push(new PokerCard(card));
@@ -33,7 +33,7 @@ export default class PokerHand implements Hand {
     return 0;
   }
 
-  private validateCards(cards: string[]) {
-    if (cards.length > this.maxNumberOfCards) throw Error("Max number of cards reached.");
+  private validateMaxNumberOfCards(cards: string[]) {
+    if (cards.length > this.maxNumberOfCards) throw Error("More than max allowed number of cards in hand.");
   }
 }
