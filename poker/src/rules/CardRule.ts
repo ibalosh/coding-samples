@@ -1,4 +1,4 @@
-import {Card} from "../PokerCard";
+import {Card} from "../Card";
 
 export interface CardRule {
   readonly score: number;

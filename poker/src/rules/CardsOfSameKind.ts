@@ -1,4 +1,4 @@
-import {Card} from "../PokerCard";
+import {Card} from "../Card";
 import {CardRule} from "./CardRule";
 import {StringNumberPair} from "../models";
 

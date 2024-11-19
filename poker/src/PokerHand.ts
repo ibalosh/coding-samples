@@ -1,27 +1,22 @@
-import {Card, PokerCard, PokerCardIdentifier} from './PokerCard'
+import {PokerCard, PokerCardIdentifier} from './PokerCard'
+import {Card} from "./Card";
 import {CardRule} from "./rules";
-import {CardRulesFactory} from "./factories/CardRulesFactory";
-
-export interface Hand {
-  maxNumberOfCards: number;
-  cards: Card[];
-  addCards(cards: string[]): void;
-  calculateScore(): number;
-}
+import {CardRulesFactory} from "./factories";
+import {Hand} from "./Hand";
 
 export default class PokerHand implements Hand {
-  maxNumberOfCards: number;
+  readonly maxNumberOfCards: number;
   cards: Card[];
   cardRules: CardRule[];
 
-  constructor(maxNumberOfCards: number, cardRulesFactory: CardRulesFactory) {
-    this.maxNumberOfCards = maxNumberOfCards;
+  constructor(cardRulesFactory: CardRulesFactory) {
+    this.maxNumberOfCards = 5;
     this.cards = [];
     this.cardRules = cardRulesFactory.createRules();
   }
 
-  addCards(cards: PokerCardIdentifier[]) {
-    this.validateCards(cards);
+  handCards(cards: PokerCardIdentifier[]) {
+    this.validateMaxNumberOfCards(cards);
 
     for (const card of cards) {
       this.cards.push(new PokerCard(card));
@@ -38,7 +33,7 @@ export default class PokerHand implements Hand {
     return 0;
   }
 
-  private validateCards(cards: string[]) {
-    if (cards.length > this.maxNumberOfCards) throw Error("Max number of cards reached.");
+  private validateMaxNumberOfCards(cards: string[]) {
+    if (cards.length > this.maxNumberOfCards) throw Error("More than max allowed number of cards in hand.");
   }
 }
