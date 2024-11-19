@@ -1,14 +1,8 @@
 import {PokerCard, PokerCardIdentifier} from './PokerCard'
 import {Card} from "./Card";
 import {CardRule} from "./rules";
-import {CardRulesFactory} from "./factories/CardRulesFactory";
-
-export interface Hand {
-  maxNumberOfCards: number;
-  cards: Card[];
-  handCards(cards: string[]): void;
-  calculateScore(): number;
-}
+import {CardRulesFactory} from "./factories";
+import {Hand} from "./Hand";
 
 export default class PokerHand implements Hand {
   readonly maxNumberOfCards: number;
