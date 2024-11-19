@@ -1,1 +1,1 @@
-# assignments
+# coding samples
