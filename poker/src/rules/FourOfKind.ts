@@ -2,11 +2,8 @@ import Card from "../Card";
 import {CardsOfSameKind} from "./CardsOfSameKind";
 
 export class FourOfKind extends CardsOfSameKind {
-  score: number;
-
-  constructor() {
-    super();
-    this.score = 8;
+  constructor(score: number) {
+    super(score);
   }
 
   calculateScore(cards: Card[]): number {

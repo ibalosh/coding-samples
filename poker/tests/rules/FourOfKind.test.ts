@@ -7,7 +7,7 @@ describe('Four of kind Rule', () => {
       new Card("0s"), new Card("0s"), new Card("0s"), new Card("3s"), new Card("3h")
     ]
 
-    expect(new FourOfKind().calculateScore(cards)).toEqual(0);
+    expect(new FourOfKind(8).calculateScore(cards)).toEqual(0);
   })
 
   test("satisfy the rule",() => {
@@ -15,6 +15,6 @@ describe('Four of kind Rule', () => {
       new Card("0s"), new Card("0s"), new Card("0s"), new Card("0s"), new Card("3s")
     ]
 
-    expect(new FourOfKind().calculateScore(cards)).toEqual(8);
+    expect(new FourOfKind(8).calculateScore(cards)).toEqual(8);
   })
 })

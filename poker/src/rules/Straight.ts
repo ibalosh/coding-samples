@@ -2,10 +2,10 @@ import Card from "../Card";
 import {CardRule} from "./CardRule";
 
 export class Straight implements CardRule {
-  score: number;
+  public readonly score;
 
-  constructor() {
-    this.score = 5;
+  constructor(score: number) {
+    this.score = score;
   }
 
   calculateScore(cards: Card[]): number {

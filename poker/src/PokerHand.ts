@@ -1,5 +1,6 @@
 import Card from './Card'
 import {CardRule} from "./rules";
+import {CardRulesFactory} from "./factories/CardRuleFactory";
 
 export interface Hand {
   maxNumberOfCards: number;
@@ -13,10 +14,10 @@ export default class PokerHand implements Hand {
   cards: Card[];
   cardRules: CardRule[];
 
-  constructor(maxNumberOfCards: number, cardRules: CardRule[]) {
+  constructor(maxNumberOfCards: number, cardRulesFactory: CardRulesFactory) {
     this.maxNumberOfCards = maxNumberOfCards;
     this.cards = [];
-    this.cardRules = cardRules;
+    this.cardRules = cardRulesFactory.createRules();
   }
 
   addCards(cards: string[]) {
@@ -28,7 +29,13 @@ export default class PokerHand implements Hand {
   }
 
   calculateScore() {
-    return this.cardRules[0].calculateScore(this.cards)
+    for(let i = 0; i < this.cardRules.length; i++) {
+      const score = this.cardRules[i].calculateScore(this.cards)
+      if (score > 0)
+        return score;
+    }
+
+    return 0;
   }
 
   private validateCards(cards: string[]) {

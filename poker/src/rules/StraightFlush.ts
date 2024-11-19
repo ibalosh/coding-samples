@@ -2,11 +2,8 @@ import Card from "../Card";
 import {Straight} from "./Straight";
 
 export class StraightFlush extends Straight {
-  score: number;
-
-  constructor() {
-    super();
-    this.score = 9;
+  constructor(score: number) {
+    super(score);
   }
 
   calculateScore(cards: Card[]): number {

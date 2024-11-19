@@ -3,10 +3,10 @@ import {CardRule} from "./CardRule";
 import {StringNumberPair} from "../models";
 
 export class FullHouse implements CardRule {
-  score: number;
+  public readonly score;
 
-  constructor() {
-    this.score = 7;
+  constructor(score: number) {
+    this.score = score;
   }
 
   calculateScore(cards: Card[]): number {

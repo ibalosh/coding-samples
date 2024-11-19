@@ -7,7 +7,7 @@ describe('Three of kind rule', () => {
       new Card("0s"), new Card("0s"), new Card("4s"), new Card("3s"), new Card("3h")
     ]
 
-    expect(new ThreeOfKind().calculateScore(cards)).toEqual(0);
+    expect(new ThreeOfKind(4).calculateScore(cards)).toEqual(0);
   })
 
   test("satisfy the rule",() => {
@@ -15,6 +15,6 @@ describe('Three of kind rule', () => {
       new Card("0s"), new Card("0s"), new Card("0s"), new Card("2s"), new Card("3s")
     ]
 
-    expect(new ThreeOfKind().calculateScore(cards)).toEqual(4);
+    expect(new ThreeOfKind(4).calculateScore(cards)).toEqual(4);
   })
 })

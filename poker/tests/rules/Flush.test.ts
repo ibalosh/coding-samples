@@ -9,7 +9,7 @@ describe('Flush', () => {
       new Card("0s"), new Card("0s"), new Card("0s"), new Card("3s"), new Card("3h")
     ]
 
-    expect(new Flush().calculateScore(cards)).toEqual(0);
+    expect(new Flush(6).calculateScore(cards)).toEqual(0);
   })
 
   test("satisfy the rule",() => {
@@ -17,6 +17,6 @@ describe('Flush', () => {
       new Card("0s"), new Card("0s"), new Card("0s"), new Card("3s"), new Card("3s")
     ]
 
-    expect(new Flush().calculateScore(cards)).toEqual(6);
+    expect(new Flush(6).calculateScore(cards)).toEqual(6);
   })
 })

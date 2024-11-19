@@ -8,7 +8,7 @@ describe('Pair rule', () => {
       new Card("0s"), new Card("1s"), new Card("4s"), new Card("Ts"), new Card("3h")
     ]
 
-    expect(new Pair().calculateScore(cards)).toEqual(0);
+    expect(new Pair(3).calculateScore(cards)).toEqual(0);
   })
 
   test("satisfy the rule",() => {
@@ -16,6 +16,6 @@ describe('Pair rule', () => {
       new Card("0s"), new Card("0s"), new Card("1s"), new Card("2s"), new Card("3s")
     ]
 
-    expect(new Pair().calculateScore(cards)).toEqual(3);
+    expect(new Pair(3).calculateScore(cards)).toEqual(3);
   })
 })

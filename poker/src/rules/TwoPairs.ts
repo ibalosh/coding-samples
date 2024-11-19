@@ -4,11 +4,8 @@ import {StringNumberPair} from "../models";
 import {CardsOfSameKind} from "./CardsOfSameKind";
 
 export class TwoPairs extends CardsOfSameKind{
-  score: number;
-
-  constructor() {
-    super();
-    this.score = 2;
+  constructor(score: number) {
+    super(score);
   }
 
   calculateScore(cards: Card[]): number {

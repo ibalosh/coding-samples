@@ -9,7 +9,7 @@ describe('Full House rule', () => {
       new Card("0s"), new Card("0s"), new Card("0s"), new Card("3s"), new Card("4h")
     ]
 
-    expect(new FullHouse().calculateScore(cards)).toEqual(0);
+    expect(new FullHouse(7).calculateScore(cards)).toEqual(0);
   })
 
   test("satisfy the rule",() => {
@@ -17,6 +17,6 @@ describe('Full House rule', () => {
       new Card("0s"), new Card("0s"), new Card("0s"), new Card("3s"), new Card("3h")
     ]
 
-    expect(new FullHouse().calculateScore(cards)).toEqual(7);
+    expect(new FullHouse(7).calculateScore(cards)).toEqual(7);
   })
 })

@@ -3,10 +3,10 @@ import {CardRule} from "./CardRule";
 import {StringNumberPair} from "../models";
 
 export abstract class CardsOfSameKind implements CardRule {
-  score: number;
+  public readonly score;
 
-  constructor() {
-    this.score = 0;
+  constructor(score: number) {
+    this.score = score;
   }
 
   abstract calculateScore(cards: Card[]): number;

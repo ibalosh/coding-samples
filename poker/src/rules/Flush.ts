@@ -2,10 +2,10 @@ import Card from "../Card";
 import {CardRule} from "./CardRule";
 
 export class Flush implements CardRule {
-  score: number;
+  public readonly score;
 
-  constructor() {
-    this.score = 6;
+  constructor(score: number) {
+    this.score = score;
   }
 
   calculateScore(cards: Card[]): number {
