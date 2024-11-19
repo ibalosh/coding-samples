@@ -1,11 +1,15 @@
 import {PokerCard} from "../../src/PokerCard";
-import {FullHouse} from "../../src/rules/FullHouse";
+import {FullHouse} from "../../src/rules";
 
-describe('Full House rule', () => {
+describe('Full house rule', () => {
 
   test("not satisfy the rule",() => {
     const cards = [
-      new PokerCard("0s"), new PokerCard("0s"), new PokerCard("0s"), new PokerCard("3s"), new PokerCard("4h")
+      new PokerCard("0s"),
+      new PokerCard("0s"),
+      new PokerCard("0s"),
+      new PokerCard("3s"),
+      new PokerCard("4h")
     ]
 
     expect(new FullHouse(7).calculateScore(cards)).toEqual(0);
@@ -13,7 +17,11 @@ describe('Full House rule', () => {
 
   test("satisfy the rule",() => {
     const cards = [
-      new PokerCard("0s"), new PokerCard("0s"), new PokerCard("0s"), new PokerCard("3s"), new PokerCard("3h")
+      new PokerCard("0s"),
+      new PokerCard("0s"),
+      new PokerCard("0s"),
+      new PokerCard("3s"),
+      new PokerCard("3h")
     ]
 
     expect(new FullHouse(7).calculateScore(cards)).toEqual(7);
