@@ -1,20 +1,18 @@
-import {PokerCardIdentifier} from './PokerCard'
 import {CardRule} from "./rules";
-import {CardRulesFactory, CardsHandFactory} from "./factories";
 import Player from "./Player";
 import {Card} from "./Card";
+import {CardGameFactory} from "./factories";
 
 export default class Game {
   public cards: Card[];
   public players: Player[];
-
+  private cardGameFactory: CardGameFactory;
   private cardRules: CardRule[];
-  private cardsHandFactory: CardsHandFactory;
 
-  constructor(cardRulesFactory: CardRulesFactory, cardsHandFactory: CardsHandFactory) {
+  constructor(cardGameFactory: CardGameFactory) {
     this.cards = [];
-    this.cardRules = cardRulesFactory.createRules();
-    this.cardsHandFactory = cardsHandFactory;
+    this.cardGameFactory = cardGameFactory;
+    this.cardRules = this.cardGameFactory.createRules();
     this.players = [];
   }
 
@@ -28,7 +26,7 @@ export default class Game {
     if (playerFound === undefined)
       throw new Error("Player not found");
 
-    playerFound.addCards(this.cardsHandFactory.createHand(cards));
+    playerFound.addCards(this.cardGameFactory.createHand(cards));
   }
 
   calculateScore(player: Player) {
