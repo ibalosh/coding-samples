@@ -49,14 +49,13 @@ describe("Game", () => {
       new Player("Michael Doe")
     ];
 
-    game.addPlayers(players);
-
+    players.forEach(player => game.addPlayer(player));
 
     game.addCards(["7d","8d","9d","Td","Jd"],players[1].name);
     game.addCards(["3d","3s","6h","6d","7d"], players[0].name);
     game.addCards(["3d","4s","5h","6d","7d"], players[2].name);
 
-    expect(game.calculateWinner()).toEqual(players[1]);
+    expect(game.calculateWinner()).toEqual([players[1]]);
   })
 
   describe("calculate score", () => {

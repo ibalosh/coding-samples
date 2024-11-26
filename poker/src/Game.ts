@@ -20,10 +20,6 @@ export default class Game {
     this.players.push(player);
   }
 
-  addPlayers(players: Player[]) {
-    this.players.push(...players);
-  }
-
   addCards(cards: string[], playerName: string) {
     const playerFound = this.findPlayerByName(playerName);
 
@@ -59,19 +55,21 @@ export default class Game {
    * Calculate the winner of the game based on the rank and value of the cards
    * @returns The player with the highest score
    */
-  calculateWinner() {
+  calculateWinner(): Player[] {
     if (this.players.length === 0)
-      return null;
+      return [];
 
-    let winner = this.players[0];
-    let score = this.calculateHandValue(winner.name);
-
-    for (let i = 1; i < this.players.length; i++) {
+    let winner = [];
+    let score = 0;
+    let rank = 0;
+    
+    for (let i = 0; i < this.players.length; i++) {
       const player = this.players[i];
       const playerScore = this.calculateHandValue(player.name);
 
       if (playerScore > score) {
-        winner = player;
+        winner = [];
+        winner.push(player);
         score = playerScore;
       }
     }
