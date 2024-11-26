@@ -19,7 +19,10 @@ export class PokerCard implements Card{
     this.suit = this.suitsAsNumbers[identifier.charAt(1)];
   }
 
-  private suitsAsNumbers:StringNumberPair = {"s":0, "h": 1, "d": 2, "c": 3}
+  private suitsAsNumbers:StringNumberPair = {
+    "s":0, "h": 1,
+    "d": 2, "c": 3
+  }
 
   private valuesAsNumbers:StringNumberPair = {
     "0": 0, "1": 1, "2": 2, "3": 3, "4": 4,

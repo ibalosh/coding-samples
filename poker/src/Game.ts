@@ -29,7 +29,12 @@ export default class Game {
     playerFound.addCards(this.cardGameFactory.createHand(cards));
   }
 
-  calculateScore(player: Player) {
+  /**
+   * Calculate the value of cards of a player
+   * @param player
+   * @returns The total value of the cards for the player
+   */
+  calculateHandValue(player: Player) {
     if (!this.findPlayer(player))
       throw new Error("Player not found");
 
@@ -46,16 +51,20 @@ export default class Game {
     return 0;
   }
 
+  /**
+   * Calculate the winner of the game
+   * @returns The player with the highest score
+   */
   calculateWinner() {
     if (this.players.length === 0)
       return null;
 
     let winner = this.players[0];
-    let score = this.calculateScore(winner);
+    let score = this.calculateHandValue(winner);
 
     for (let i = 1; i < this.players.length; i++) {
       const player = this.players[i];
-      const playerScore = this.calculateScore(player);
+      const playerScore = this.calculateHandValue(player);
 
       if (playerScore > score) {
         winner = player;
