@@ -2,15 +2,7 @@ import {Card} from "../Card";
 import {CardRule} from "./CardRule";
 import {StringNumberPair} from "../models";
 
-export abstract class CardsOfSameKind implements CardRule {
-  public readonly score;
-
-  constructor(score: number) {
-    this.score = score;
-  }
-
-  abstract calculateScore(cards: Card[]): number;
-
+export abstract class CardsOfSameKind extends CardRule {
   protected getCountsOfCardsWithSameValues(cards: Card[], numberOfCards: number): number {
     const cardsGroupedByValue = this.groupCardsByValue(cards);
     return (Object.values(cardsGroupedByValue).filter(values => values === numberOfCards)).length

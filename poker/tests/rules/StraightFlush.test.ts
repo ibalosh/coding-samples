@@ -2,7 +2,7 @@ import {PokerCard} from "../../src/PokerCard";
 import {StraightFlush} from "../../src/rules";
 
 describe('Straight flush rule', () => {
-  test("not satisfied the rule",() => {
+  test("not satisfied the rule", () => {
     const cards = [
       new PokerCard("0s"),
       new PokerCard("1s"),
@@ -11,10 +11,10 @@ describe('Straight flush rule', () => {
       new PokerCard("4h")
     ]
 
-    expect(new StraightFlush(9).calculateScore(cards)).toEqual(0);
+    expect(new StraightFlush(9).calculateCardsRankAndValue(cards)).toEqual({rank: 0, value: 10});
   })
 
-  test("satisfied the rule",() => {
+  test("satisfied the rule", () => {
     const cards = [
       new PokerCard("0s"),
       new PokerCard("1s"),
@@ -23,6 +23,6 @@ describe('Straight flush rule', () => {
       new PokerCard("4s")
     ]
 
-    expect(new StraightFlush(9).calculateScore(cards)).toEqual(9);
+    expect(new StraightFlush(9).calculateCardsRankAndValue(cards)).toEqual({rank: 9, value: 10});
   })
 })

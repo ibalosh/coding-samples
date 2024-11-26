@@ -3,7 +3,7 @@ import {FullHouse} from "../../src/rules";
 
 describe('Full house rule', () => {
 
-  test("not satisfy the rule",() => {
+  test("not satisfy the rule", () => {
     const cards = [
       new PokerCard("0s"),
       new PokerCard("0s"),
@@ -12,10 +12,10 @@ describe('Full house rule', () => {
       new PokerCard("4h")
     ]
 
-    expect(new FullHouse(7).calculateScore(cards)).toEqual(0);
+    expect(new FullHouse(7).calculateCardsRankAndValue(cards)).toEqual({rank: 0, value: 7});
   })
 
-  test("satisfy the rule",() => {
+  test("satisfy the rule", () => {
     const cards = [
       new PokerCard("0s"),
       new PokerCard("0s"),
@@ -24,6 +24,6 @@ describe('Full house rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new FullHouse(7).calculateScore(cards)).toEqual(7);
+    expect(new FullHouse(7).calculateCardsRankAndValue(cards)).toEqual({rank: 7, value: 6});
   })
 })

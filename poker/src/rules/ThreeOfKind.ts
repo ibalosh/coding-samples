@@ -2,11 +2,10 @@ import {Card} from "../Card";
 import {CardsOfSameKind} from "./CardsOfSameKind";
 
 export class ThreeOfKind extends CardsOfSameKind{
-  constructor(score: number) {
-    super(score);
-  }
-
-  calculateScore(cards: Card[]): number {
-    return this.hasCardsWithSameValues(cards, 3) ? this.score : 0;
+  calculateCardsRankAndValue(cards: Card[]) {
+    return {
+      rank: this.hasCardsWithSameValues(cards, 3) ? this.combinationRank : 0,
+      value: this.calculateCardsValue(cards)
+    };
   }
 }

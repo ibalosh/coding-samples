@@ -3,14 +3,11 @@ import {CardRule} from "./CardRule";
 import {StringNumberPair} from "../models";
 import {CardsOfSameKind} from "./CardsOfSameKind";
 
-export class HighCard implements CardRule {
-  public readonly score;
-
-  constructor(score: number) {
-    this.score = score;
-  }
-
-  calculateScore(cards: Card[]): number {
-    return this.score;
+export class HighCard extends CardRule {
+  calculateCardsRankAndValue(cards: Card[]) {
+    return {
+      rank: this.combinationRank,
+      value: this.calculateCardsValue(cards)
+    };
   }
 }

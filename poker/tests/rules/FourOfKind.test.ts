@@ -2,7 +2,7 @@ import {PokerCard} from "../../src/PokerCard";
 import {FourOfKind} from "../../src/rules";
 
 describe('Four of kind rule', () => {
-  test("not satisfy the rule",() => {
+  test("not satisfy the rule", () => {
     const cards = [
       new PokerCard("0s"),
       new PokerCard("0s"),
@@ -11,10 +11,10 @@ describe('Four of kind rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new FourOfKind(8).calculateScore(cards)).toEqual(0);
+    expect(new FourOfKind(8).calculateCardsRankAndValue(cards)).toEqual({rank: 0, value: 6});
   })
 
-  test("satisfy the rule",() => {
+  test("satisfy the rule", () => {
     const cards = [
       new PokerCard("0s"),
       new PokerCard("0s"),
@@ -23,6 +23,6 @@ describe('Four of kind rule', () => {
       new PokerCard("3s")
     ]
 
-    expect(new FourOfKind(8).calculateScore(cards)).toEqual(8);
+    expect(new FourOfKind(8).calculateCardsRankAndValue(cards)).toEqual({rank: 8, value: 3});
   })
 })

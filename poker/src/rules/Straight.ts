@@ -1,18 +1,14 @@
 import {Card} from "../Card";
 import {CardRule} from "./CardRule";
 
-export class Straight implements CardRule {
-  public readonly score;
+export class Straight extends CardRule {
+  calculateCardsRankAndValue(cards: Card[]) {
+    const rank = (this.doCardsHaveConsecutiveValues(cards)) ? this.combinationRank : 0
 
-  constructor(score: number) {
-    this.score = score;
-  }
-
-  calculateScore(cards: Card[]): number {
-    if (this.doCardsHaveConsecutiveValues(cards))
-      return this.score;
-    else
-      return 0;
+    return {
+      rank,
+      value: this.calculateCardsValue(cards)
+    };
   }
 
   protected doCardsHaveConsecutiveValues(cards: Card[]): boolean {

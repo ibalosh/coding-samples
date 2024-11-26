@@ -2,7 +2,7 @@ import {PokerCard} from "../../src/PokerCard";
 import {TwoPairs} from "../../src/rules";
 
 describe('Two pair rule', () => {
-  test("not satisfy the rule",() => {
+  test("not satisfy the rule", () => {
     const cards = [
       new PokerCard("0s"),
       new PokerCard("1s"),
@@ -11,10 +11,10 @@ describe('Two pair rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new TwoPairs(2).calculateScore(cards)).toEqual(0);
+    expect(new TwoPairs(2).calculateCardsRankAndValue(cards)).toEqual({rank: 0, value: 18});
   })
 
-  test("satisfy the rule",() => {
+  test("satisfy the rule", () => {
     const cards = [
       new PokerCard("0s"),
       new PokerCard("0s"),
@@ -23,6 +23,6 @@ describe('Two pair rule', () => {
       new PokerCard("2s")
     ]
 
-    expect(new TwoPairs(2).calculateScore(cards)).toEqual(2);
+    expect(new TwoPairs(2).calculateCardsRankAndValue(cards)).toEqual({rank: 2, value: 5});
   })
 })

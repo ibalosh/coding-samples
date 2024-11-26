@@ -30,7 +30,7 @@ export default class Game {
   }
 
   /**
-   * Calculate the value of cards of a player
+   * Calculate the value of the cards of a player
    * @param player
    * @returns The total value of the cards for the player
    */
@@ -43,16 +43,16 @@ export default class Game {
       throw new Error("Player has no cards");
 
     for(let i = 0; i < this.cardRules.length; i++) {
-      const score = this.cardRules[i].calculateScore(foundPlayer.cards)
-      if (score > 0)
-        return score;
+      const cardCombination = this.cardRules[i].calculateCardsRankAndValue(foundPlayer.cards)
+      if (cardCombination.rank > 0)
+        return cardCombination.rank;
     }
 
     return 0;
   }
 
   /**
-   * Calculate the winner of the game
+   * Calculate the winner of the game based on the rank and value of the cards
    * @returns The player with the highest score
    */
   calculateWinner() {
