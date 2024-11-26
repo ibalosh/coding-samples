@@ -20,8 +20,12 @@ export default class Game {
     this.players.push(player);
   }
 
-  addCards(cards: string[], player: Player) {
-    const playerFound = this.findPlayer(player);
+  addPlayers(players: Player[]) {
+    this.players.push(...players);
+  }
+
+  addCards(cards: string[], playerName: string) {
+    const playerFound = this.findPlayerByName(playerName);
 
     if (playerFound === undefined)
       throw new Error("Player not found");
@@ -31,14 +35,14 @@ export default class Game {
 
   /**
    * Calculate the value of the cards of a player
-   * @param player
+   * @param playerByName
    * @returns The total value of the cards for the player
    */
-  calculateHandValue(player: Player) {
-    if (!this.findPlayer(player))
+  calculateHandValue(playerByName: string) {
+    const foundPlayer = this.findPlayerByName(playerByName)
+    if (!foundPlayer)
       throw new Error("Player not found");
 
-    const foundPlayer = this.findPlayer(player)
     if (!foundPlayer?.cards)
       throw new Error("Player has no cards");
 
@@ -60,11 +64,11 @@ export default class Game {
       return null;
 
     let winner = this.players[0];
-    let score = this.calculateHandValue(winner);
+    let score = this.calculateHandValue(winner.name);
 
     for (let i = 1; i < this.players.length; i++) {
       const player = this.players[i];
-      const playerScore = this.calculateHandValue(player);
+      const playerScore = this.calculateHandValue(player.name);
 
       if (playerScore > score) {
         winner = player;
@@ -75,7 +79,7 @@ export default class Game {
     return winner;
   }
 
-  private findPlayer(player: Player) {
-    return this.players.find(p => p === player);
+  private findPlayerByName(name: string) {
+    return this.players.find(p => p.name.toLowerCase().trim() === name.toLowerCase().trim());
   }
 }
