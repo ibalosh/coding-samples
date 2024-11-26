@@ -6,7 +6,7 @@ import {CardsOfSameKind} from "./CardsOfSameKind";
 export class HighCard extends CardRule {
   calculateCardsRankAndValue(cards: Card[]) {
     return {
-      rank: this.combinationRank,
+      rank: this.rank,
       value: this.calculateCardsValue(cards)
     };
   }

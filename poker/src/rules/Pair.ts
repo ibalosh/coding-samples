@@ -8,7 +8,7 @@ export class Pair extends CardsOfSameKind{
 
   calculateCardsRankAndValue(cards: Card[]) {
     return {
-      rank: this.hasCardsWithSameValues(cards, 2) ? this.combinationRank : 0,
+      rank: this.hasCardsWithSameValues(cards, 2) ? this.rank : 0,
       value: this.calculateCardsValue(cards)
     };
   }

@@ -8,7 +8,7 @@ export class FullHouse extends CardRule {
 
     const rank = (Object.values(cardsGroupedByValue).includes(3) &&
       Object.values(cardsGroupedByValue).includes(2)
-    ) ? this.combinationRank : 0;
+    ) ? this.rank : 0;
 
     return {
       rank,

@@ -4,7 +4,7 @@ import {Straight} from "./Straight";
 export class StraightFlush extends Straight {
   calculateCardsRankAndValue(cards: Card[]) {
     const rank = (this.doCardsHaveConsecutiveValues(cards) && this.doCardsHaveSameSuit(cards)) ?
-      this.combinationRank : 0;
+      this.rank : 0;
 
     return {
       rank,

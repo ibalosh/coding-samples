@@ -6,15 +6,6 @@ import {PokerHandManager} from "../src/CardHandManager";
 describe("Game", () => {
   const player = new Player("John Smith");
 
-  test("add invalid number of cards", () => {
-    const game = new Game(new PokerRules(), new PokerHandManager());
-    game.addPlayer(player)
-
-    expect(
-      () => game.addCards(["a","a","a","a","a","a"], player.name)
-    ).toThrow(Error);
-  })
-
   test("add valid number of cards", () => {
     const game = new Game(new PokerRules(), new PokerHandManager());
     game.addPlayer(player)

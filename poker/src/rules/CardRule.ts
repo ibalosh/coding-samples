@@ -6,9 +6,9 @@ export interface CardCombination {
 }
 
 export abstract class CardRule {
-  readonly combinationRank: number;
-  constructor(combinationRank: number) {
-    this.combinationRank = combinationRank;
+  readonly rank: number;
+  constructor(rank: number) {
+    this.rank = rank;
   }
 
   abstract calculateCardsRankAndValue(cards:Card[]): CardCombination;
