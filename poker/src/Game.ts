@@ -1,18 +1,15 @@
 import {CardRule} from "./rules";
 import Player from "./Player";
-import {Card} from "./Card";
-import {CardHandManager} from "./CardHandManager";
+import {CardFactory} from "./CardFactory";
 import {CardRules} from "./CardRules";
 
 export default class Game {
-  public cards: Card[];
   public players: Player[];
-  private cardHandManager: CardHandManager;
+  private cardFactory: CardFactory;
   private cardRules: CardRule[];
 
-  constructor(cardRules: CardRules, cardHandManager: CardHandManager) {
-    this.cards = [];
-    this.cardHandManager = cardHandManager;
+  constructor(cardRules: CardRules, cardFactory: CardFactory) {
+    this.cardFactory = cardFactory;
     this.cardRules = cardRules.createRules();
     this.players = [];
   }
@@ -23,7 +20,9 @@ export default class Game {
 
   addCards(cards: string[], playerName: string) {
     const playerFound = this.findPlayerByName(playerName);
-    playerFound.addCards(this.cardHandManager.createHand(cards));
+    const cardsToAdd = cards.map(card => this.cardFactory.createCard(card));
+
+    playerFound.addCards(cardsToAdd);
   }
 
   /**
