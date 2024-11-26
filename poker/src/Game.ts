@@ -44,47 +44,21 @@ export default class Game {
     if (this.players.length === 0)
       return null;
 
-    let winner = [];
-    let rank = 0;
+    let scores = [];
 
     for (let i = 0; i < this.players.length; i++) {
       const player = this.players[i];
-      const playerScore = calculateScore(this.cardRules, player.cards);
+      const score = calculateScore(this.cardRules, player.cards);
 
-      if (playerScore.rank > rank) {
-        winner = [];
-        winner.push({
-          player: player,
-          score: playerScore.score,
+      scores.push({
+        player,
+        score
+      });
+    }
 
-        });
-      }
-      else if (playerScore.rank === rank) {
-        winner.push({
-          player: player,
-          score: playerScore.score,
-        });
-      }
-    }
-    if (winner.length < 1) {
-      return null;
-    }
-    else if (winner.length === 1) {
-      return winner[0].player
-    }
-    else {
-      let maxWinner: { player: Player, score: number} = winner[0];
-      for (let i=1;i< winner.length;i++){
-        if (winner[i].score > maxWinner.score){
-          maxWinner = {
-            player: winner[i].player,
-            score: winner[i].score
-          };
-        }
-      }
-
-      return maxWinner.player;
-    }
+    return scores.sort((a,b) => {
+      return b.score.rank - a.score.rank;
+    })[0].player;
   }
 
   private findPlayerByName(name: string) {

@@ -49,7 +49,7 @@ describe("Game", () => {
     expect(game.calculateWinner()).toEqual(players[1]);
   })
 
-  test("identify winner", () => {
+  test("identify winner when players are not set", () => {
     const game = new Game(new PokerRules(), new PokerCardFactory());
     expect(game.calculateWinner()).toEqual(null);
   })
