@@ -9,13 +9,13 @@ import {
   Straight,
   ThreeOfKind,
   TwoPairs,
-} from "../rules";
+} from "./rules";
 
-export interface CardRulesFactory {
+export interface CardRules {
   createRules(): CardRule[];
 }
 
-export class PokerRulesFactory implements CardRulesFactory {
+export class PokerRules implements CardRules {
   createRules(): CardRule[] {
     const cardRules: CardRule[] = [];
     cardRules.push(new StraightFlush(9));

@@ -1,13 +1,13 @@
-import {Card} from "../Card";
-import {PokerCard, PokerCardIdentifier} from "../PokerCard";
+import {Card} from "./Card";
+import {PokerCard, PokerCardIdentifier} from "./PokerCard";
 
-export interface CardsHandFactory {
+export interface CardHandManager {
   maxNumberOfCards: number;
 
   createHand(cardIdentfiers: string[]): Card[];
 }
 
-export class PokerHandFactory implements CardsHandFactory {
+export class PokerHandManager implements CardHandManager {
   constructor(public maxNumberOfCards: number = 5) {
     this.maxNumberOfCards = maxNumberOfCards;
   }

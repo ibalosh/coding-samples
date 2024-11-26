@@ -1,18 +1,19 @@
 import {CardRule} from "./rules";
 import Player from "./Player";
 import {Card} from "./Card";
-import {CardGameFactory} from "./factories";
+import {CardHandManager} from "./CardHandManager";
+import {CardRules} from "./CardRules";
 
 export default class Game {
   public cards: Card[];
   public players: Player[];
-  private cardGameFactory: CardGameFactory;
+  private cardHandManager: CardHandManager;
   private cardRules: CardRule[];
 
-  constructor(cardGameFactory: CardGameFactory) {
+  constructor(cardRules: CardRules, cardHandManager: CardHandManager) {
     this.cards = [];
-    this.cardGameFactory = cardGameFactory;
-    this.cardRules = this.cardGameFactory.createRules();
+    this.cardHandManager = cardHandManager;
+    this.cardRules = cardRules.createRules();
     this.players = [];
   }
 
@@ -26,7 +27,7 @@ export default class Game {
     if (playerFound === undefined)
       throw new Error("Player not found");
 
-    playerFound.addCards(this.cardGameFactory.createHand(cards));
+    playerFound.addCards(this.cardHandManager.createHand(cards));
   }
 
   /**
@@ -62,7 +63,7 @@ export default class Game {
     let winner = [];
     let score = 0;
     let rank = 0;
-    
+
     for (let i = 0; i < this.players.length; i++) {
       const player = this.players[i];
       const playerScore = this.calculateHandValue(player.name);
