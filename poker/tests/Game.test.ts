@@ -58,6 +58,11 @@ describe("Game", () => {
     expect(game.calculateWinner()).toEqual([players[1]]);
   })
 
+  test("identify winner", () => {
+    const game = new Game(new PokerRules(), new PokerHandManager());
+    expect(game.calculateWinner()).toEqual([]);
+  })
+
   describe("calculate score", () => {
     test("identify high card", () => {
       const game = new Game(new PokerRules(), new PokerHandManager());

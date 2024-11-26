@@ -23,10 +23,6 @@ export default class Game {
 
   addCards(cards: string[], playerName: string) {
     const playerFound = this.findPlayerByName(playerName);
-
-    if (playerFound === undefined)
-      throw new Error("Player not found");
-
     playerFound.addCards(this.cardHandManager.createHand(cards));
   }
 
@@ -36,15 +32,10 @@ export default class Game {
    * @returns The total value of the cards for the player
    */
   calculateHandValue(playerByName: string) {
-    const foundPlayer = this.findPlayerByName(playerByName)
-    if (!foundPlayer)
-      throw new Error("Player not found");
-
-    if (!foundPlayer?.cards)
-      throw new Error("Player has no cards");
+    const player = this.findPlayerByName(playerByName)
 
     for(let i = 0; i < this.cardRules.length; i++) {
-      const cardCombination = this.cardRules[i].calculateCardsRankAndValue(foundPlayer.cards)
+      const cardCombination = this.cardRules[i].calculateCardsRankAndValue(player.cards)
       if (cardCombination.rank > 0)
         return cardCombination.rank;
     }
@@ -62,7 +53,6 @@ export default class Game {
 
     let winner = [];
     let score = 0;
-    let rank = 0;
 
     for (let i = 0; i < this.players.length; i++) {
       const player = this.players[i];
@@ -79,6 +69,10 @@ export default class Game {
   }
 
   private findPlayerByName(name: string) {
-    return this.players.find(p => p.name.toLowerCase().trim() === name.toLowerCase().trim());
+    const player = this.players.find(p => p.name.toLowerCase().trim() === name.toLowerCase().trim());
+    if (player)
+      return player
+
+    throw new Error("Player not found");
   }
 }
