@@ -4,7 +4,7 @@ import {PokerCard, PokerCardIdentifier} from "./PokerCard";
 export interface CardHandManager {
   maxNumberOfCards: number;
 
-  createHand(cardIdentfiers: string[]): Card[];
+  createHand(cardIdentifiers: string[]): Card[];
 }
 
 export class PokerHandManager implements CardHandManager {
