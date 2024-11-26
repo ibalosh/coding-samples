@@ -6,10 +6,7 @@ export class FourOfKind extends CardsOfSameKind {
     super(score);
   }
 
-  calculateCardsRankAndValue(cards: Card[]) {
-    return {
-      rank: this.hasCardsWithSameValues(cards,4) ? this.rank : 0,
-      value: this.calculateCardsValue(cards)
-    };
+  satisfiesTheRule(cards: Card[]) {
+    return this.hasCardsWithSameValues(cards,4);
   }
 }

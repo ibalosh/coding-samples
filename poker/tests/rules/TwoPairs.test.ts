@@ -11,7 +11,7 @@ describe('Two pair rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new TwoPairs(2).calculateCardsRankAndValue(cards)).toEqual({rank: 0, value: 18});
+    expect(new TwoPairs(2).satisfiesTheRule(cards)).toBe(false);
   })
 
   test("satisfy the rule", () => {
@@ -23,6 +23,6 @@ describe('Two pair rule', () => {
       new PokerCard("2s")
     ]
 
-    expect(new TwoPairs(2).calculateCardsRankAndValue(cards)).toEqual({rank: 2, value: 5});
+    expect(new TwoPairs(2).satisfiesTheRule(cards)).toBe(true);
   })
 })

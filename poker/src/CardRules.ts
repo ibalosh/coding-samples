@@ -10,13 +10,36 @@ import {
   ThreeOfKind,
   TwoPairs,
 } from "./rules";
+import {Card} from "./Card";
 
-export interface CardRules {
-  createRules(): CardRule[];
+export abstract class CardRules {
+  cardRules: CardRule[] = [];
+  retrieveIdentifiedRule(cards: Card[]): CardRule | null {
+    let ruleWithMaxRankNumber: CardRule | null = null;
+
+    for (let i = 0; i < this.cardRules.length; i++) {
+      if (this.cardRules[i].satisfiesTheRule(cards)) {
+        if (ruleWithMaxRankNumber === null) {
+          ruleWithMaxRankNumber = this.cardRules[i];
+        } else if (this.cardRules[i].rank > ruleWithMaxRankNumber.rank) {
+          ruleWithMaxRankNumber = this.cardRules[i];
+        }
+      }
+    }
+
+    return ruleWithMaxRankNumber;
+  };
 }
 
-export class PokerRules implements CardRules {
-  createRules(): CardRule[] {
+export class PokerRules extends CardRules {
+  cardRules: CardRule[] = [];
+
+  constructor() {
+    super();
+    this.create();
+  }
+
+  create() {
     const cardRules: CardRule[] = [];
     cardRules.push(new StraightFlush(9));
     cardRules.push(new FourOfKind(8));
@@ -28,6 +51,6 @@ export class PokerRules implements CardRules {
     cardRules.push(new Pair(2));
     cardRules.push(new HighCard(1));
 
-    return cardRules;
+    this.cardRules = cardRules;
   }
 }

@@ -46,12 +46,12 @@ describe("Game", () => {
     game.addCards(["3d","3s","6h","6d","7d"], players[0].name);
     game.addCards(["3d","4s","5h","6d","7d"], players[2].name);
 
-    expect(game.calculateWinner()).toEqual([players[1]]);
+    expect(game.calculateWinner()).toEqual(players[1]);
   })
 
   test("identify winner", () => {
     const game = new Game(new PokerRules(), new PokerCardFactory());
-    expect(game.calculateWinner()).toEqual([]);
+    expect(game.calculateWinner()).toEqual(null);
   })
 
   describe("calculate score", () => {
@@ -60,7 +60,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["Qd","7s","5h","3c","Ts"], player.name);
       
-      expect(game.calculateHandValue(player.name)).toEqual(1);
+      expect(game.calculateHandRank(player.name)).toEqual(1);
     })
 
     test("identify pair", () => {
@@ -68,7 +68,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["3d","3s","4h","6d","7d"], player.name);
 
-      expect(game.calculateHandValue(player.name)).toEqual(2);
+      expect(game.calculateHandRank(player.name)).toEqual(2);
     })
 
     test("identify two pairs", () => {
@@ -76,7 +76,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["3d","3s","6h","6d","7d"], player.name);
 
-      expect(game.calculateHandValue(player.name)).toEqual(3);
+      expect(game.calculateHandRank(player.name)).toEqual(3);
     })
 
     test("identify three of kind", () => {
@@ -84,7 +84,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["3d","3s","3h","6d","7d"], player.name);
 
-      expect(game.calculateHandValue(player.name)).toEqual(4);
+      expect(game.calculateHandRank(player.name)).toEqual(4);
     })
 
     test("identify straight", () => {
@@ -92,7 +92,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["3d","4s","5h","6d","7d"], player.name);
 
-      expect(game.calculateHandValue(player.name)).toEqual(5);
+      expect(game.calculateHandRank(player.name)).toEqual(5);
     })
 
     test("identify flush", () => {
@@ -100,7 +100,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["9d","9d","9d","5d","2d"], player.name);
 
-      expect(game.calculateHandValue(player.name)).toEqual(6);
+      expect(game.calculateHandRank(player.name)).toEqual(6);
     })
 
     test("identify full house", () => {
@@ -108,7 +108,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["9d","9d","9d","2d","2s"],player.name);
 
-      expect(game.calculateHandValue(player.name)).toEqual(7);
+      expect(game.calculateHandRank(player.name)).toEqual(7);
     })
 
     test("identify four kind", () => {
@@ -116,7 +116,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["9d","9d","9d","9d","Jd"],player.name);
 
-      expect(game.calculateHandValue(player.name)).toEqual(8);
+      expect(game.calculateHandRank(player.name)).toEqual(8);
     })
 
     test("identify straight flush", () => {
@@ -124,7 +124,7 @@ describe("Game", () => {
       game.addPlayer(player)
       game.addCards(["7d","8d","9d","Td","Jd"],player.name);
 
-      expect(game.calculateHandValue(player.name)).toEqual(9);
+      expect(game.calculateHandRank(player.name)).toEqual(9);
     })
   })
 })

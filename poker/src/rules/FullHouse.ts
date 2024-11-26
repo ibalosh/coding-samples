@@ -3,17 +3,12 @@ import {CardRule} from "./CardRule";
 import {StringNumberPair} from "../models";
 
 export class FullHouse extends CardRule {
-  calculateCardsRankAndValue(cards: Card[]) {
+  satisfiesTheRule(cards: Card[]) {
     const cardsGroupedByValue = this.groupCardsByValue(cards);
 
-    const rank = (Object.values(cardsGroupedByValue).includes(3) &&
+    return (Object.values(cardsGroupedByValue).includes(3) &&
       Object.values(cardsGroupedByValue).includes(2)
-    ) ? this.rank : 0;
-
-    return {
-      rank,
-      value: this.calculateCardsValue(cards)
-    }
+    );
   }
 
   private groupCardsByValue(cards: Card[]): StringNumberPair {

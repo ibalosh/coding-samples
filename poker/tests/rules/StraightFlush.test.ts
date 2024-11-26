@@ -11,7 +11,7 @@ describe('Straight flush rule', () => {
       new PokerCard("4h")
     ]
 
-    expect(new StraightFlush(9).calculateCardsRankAndValue(cards)).toEqual({rank: 0, value: 10});
+    expect(new StraightFlush(9).satisfiesTheRule(cards)).toBe(false);
   })
 
   test("satisfied the rule", () => {
@@ -23,6 +23,6 @@ describe('Straight flush rule', () => {
       new PokerCard("4s")
     ]
 
-    expect(new StraightFlush(9).calculateCardsRankAndValue(cards)).toEqual({rank: 9, value: 10});
+    expect(new StraightFlush(9).satisfiesTheRule(cards)).toBe(true)
   })
 })

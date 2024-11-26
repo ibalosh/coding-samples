@@ -4,10 +4,7 @@ import {StringNumberPair} from "../models";
 import {CardsOfSameKind} from "./CardsOfSameKind";
 
 export class HighCard extends CardRule {
-  calculateCardsRankAndValue(cards: Card[]) {
-    return {
-      rank: this.rank,
-      value: this.calculateCardsValue(cards)
-    };
+  satisfiesTheRule(cards: Card[]) {
+    return true;
   }
 }

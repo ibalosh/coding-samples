@@ -2,14 +2,8 @@ import {Card} from "../Card";
 import {Straight} from "./Straight";
 
 export class StraightFlush extends Straight {
-  calculateCardsRankAndValue(cards: Card[]) {
-    const rank = (this.doCardsHaveConsecutiveValues(cards) && this.doCardsHaveSameSuit(cards)) ?
-      this.rank : 0;
-
-    return {
-      rank,
-      value: this.calculateCardsValue(cards)
-    }
+  satisfiesTheRule(cards: Card[]) {
+    return this.doCardsHaveConsecutiveValues(cards) && this.doCardsHaveSameSuit(cards);
   }
 
   protected doCardsHaveSameSuit(cards: Card[]): boolean {
