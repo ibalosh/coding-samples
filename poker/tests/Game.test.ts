@@ -37,21 +37,41 @@ describe("Game", () => {
     const players = [
       new Player("John Smith"),
       new Player("Jane Doe"),
-      new Player("Michael Doe")
+      new Player("Michael Doe"),
+      new Player("Rico Doe"),
     ];
 
     players.forEach(player => game.addPlayer(player));
 
-    game.addCards(["7d","8d","9d","Td","Jd"],players[1].name);
-    game.addCards(["3d","3s","6h","6d","7d"], players[0].name);
-    game.addCards(["3d","4s","5h","6d","7d"], players[2].name);
+    game.addCards(["7d","8d","9d","Td","Jd"], "Jane Doe");
+    game.addCards(["3d","3s","6h","6d","7d"], "John Smith");
+    game.addCards(["3d","4s","5h","6d","7d"], "Michael Doe");
 
-    expect(game.calculateWinner()).toEqual(players[1]);
+    expect(game.calculateWinner()).toEqual(["Jane Doe"]);
+  })
+
+  test("identify multiple winners", () => {
+    const game = new Game(new PokerRules(), new PokerCardFactory());
+    const players = [
+      new Player("John Smith"),
+      new Player("Jane Doe"),
+      new Player("Michael Doe"),
+      new Player("Rico Doe")
+    ];
+
+    players.forEach(player => game.addPlayer(player));
+
+    game.addCards(["7d","8d","9d","Td","Jd"], "Jane Doe");
+    game.addCards(["8h","7h","9h","Th","Jh"], "Rico Doe");
+    game.addCards(["3d","3s","6h","6d","7d"], "John Smith");
+    game.addCards(["3d","4s","5h","6d","7d"], "Michael Doe");
+
+    expect(game.calculateWinner()).toEqual(["Jane Doe", "Rico Doe"]);
   })
 
   test("identify winner when players are not set", () => {
     const game = new Game(new PokerRules(), new PokerCardFactory());
-    expect(game.calculateWinner()).toEqual(null);
+    expect(game.calculateWinner()).toEqual([]);
   })
 
   describe("calculate score", () => {

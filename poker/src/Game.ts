@@ -2,16 +2,16 @@ import {CardRule} from "./rules";
 import Player from "./Player";
 import {CardFactory} from "./factories/CardFactory";
 import {CardRules} from "./CardRules";
-import {calculateScore} from "./CardCombinaton";
+import CardsEvaluator, {CardsScore} from "./CardsEvaluator";
 
 export default class Game {
   public players: Player[];
   private readonly cardFactory: CardFactory;
-  private readonly cardRules: CardRules;
+  private readonly cardsEvaluator: CardsEvaluator;
 
   constructor(cardRules: CardRules, cardFactory: CardFactory) {
     this.cardFactory = cardFactory;
-    this.cardRules = cardRules;
+    this.cardsEvaluator = new CardsEvaluator(cardRules);
     this.players = [];
   }
 
@@ -26,39 +26,40 @@ export default class Game {
     playerFound.addCards(cardsToAdd);
   }
 
-  /**
-   * Calculate the value of the cards of a player
-   * @param playerByName
-   * @returns The total value of the cards for the player
-   */
-  calculateHandRank(playerByName: string) {
-    const player = this.findPlayerByName(playerByName);
-    return this.cardRules.retrieveHighestScoringRule(player.cards)?.score || 0;
-  }
+  calculateHandRank(playerName: string): number {
+    const player = this.findPlayerByName(playerName);
+    const cards = player.cards;
 
+    return this.cardsEvaluator.evaluate(cards).scoreByRank;
+  }
   /**
    * Calculate the winner of the game based on the rank and value of the cards
    * @returns The player with the highest score
    */
-  calculateWinner(): Player | null {
+  calculateWinner(): string[] {
     if (this.players.length === 0)
-      return null;
+      return [];
 
-    let scores = [];
+    let scores: {
+      playerName: string;
+      cardsScore: CardsScore;
+    }[] = [];
 
-    for (let i = 0; i < this.players.length; i++) {
-      const player = this.players[i];
-      const score = calculateScore(this.cardRules, player.cards);
+    for (const player of this.players) {
+      const cardsScore = this.cardsEvaluator.evaluate(player.cards);
 
       scores.push({
-        player,
-        score
+        playerName: player.name,
+        cardsScore
       });
     }
 
-    return scores.sort((a,b) => {
-      return b.score.rank - a.score.rank;
-    })[0].player;
+    const highestScoreByRank = Math.max(...scores.map(score => score.cardsScore.scoreByRank));
+    scores = scores.filter(score => score.cardsScore.scoreByRank === highestScoreByRank);
+
+    const highestScoreValue = Math.max(...scores.map(score => score.cardsScore.scoreByValue));
+    scores = scores.filter(score => score.cardsScore.scoreByValue === highestScoreValue);
+    return scores.map(score => score.playerName);
   }
 
   private findPlayerByName(name: string) {
