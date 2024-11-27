@@ -1,8 +1,8 @@
-import {Card} from "../../card/Card";
+import Card from "../../card/Card";
 import {CardRule} from "./CardRule";
 
 export class Straight extends CardRule {
-  satisfiesTheRule(cards: Card[]) {
+  ruleSatisfied(cards: Card[]) {
     return this.doCardsHaveConsecutiveValues(cards)
   }
 

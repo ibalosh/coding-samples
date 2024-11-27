@@ -1,8 +1,8 @@
-import {Card} from "../../card/Card";
+import Card from "../../card/Card";
 import {Straight} from "./Straight";
 
 export class StraightFlush extends Straight {
-  satisfiesTheRule(cards: Card[]) {
+  ruleSatisfied(cards: Card[]) {
     return this.doCardsHaveConsecutiveValues(cards) && this.doCardsHaveSameSuit(cards);
   }
 

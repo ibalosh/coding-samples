@@ -1,4 +1,4 @@
-import {Card} from "./Card";
+import Card from "./Card";
 import {PokerCardIdentifier, StringNumberPair} from "./CardType";
 
 export class PokerCard implements Card{

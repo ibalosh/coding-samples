@@ -11,7 +11,7 @@ describe('Straight rule', () => {
       new PokerCard("6s"),
     ]
 
-    expect(new Straight(5).satisfiesTheRule(cards)).toBe(false);
+    expect(new Straight(5).ruleSatisfied(cards)).toBe(false);
   })
 
   test("satisfied the rule", () => {
@@ -23,6 +23,6 @@ describe('Straight rule', () => {
       new PokerCard("4s"),
     ]
 
-    expect(new Straight(5).satisfiesTheRule(cards)).toBe(true);
+    expect(new Straight(5).ruleSatisfied(cards)).toBe(true);
   })
 })

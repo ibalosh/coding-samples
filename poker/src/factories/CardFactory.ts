@@ -1,6 +1,6 @@
-import {Card} from "../card";
+import Card from "../card/Card";
 
-export interface CardFactory {
+export default interface CardFactory {
   createCard(cardIdentifier: string): Card;
 }
 

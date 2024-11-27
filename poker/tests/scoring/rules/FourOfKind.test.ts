@@ -11,7 +11,7 @@ describe('Four of kind rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new FourOfKind(8).satisfiesTheRule(cards)).toBe(false);
+    expect(new FourOfKind(8).ruleSatisfied(cards)).toBe(false);
   })
 
   test("satisfy the rule", () => {
@@ -23,6 +23,6 @@ describe('Four of kind rule', () => {
       new PokerCard("3s")
     ]
 
-    expect(new FourOfKind(8).satisfiesTheRule(cards)).toBe(true);
+    expect(new FourOfKind(8).ruleSatisfied(cards)).toBe(true);
   })
 })

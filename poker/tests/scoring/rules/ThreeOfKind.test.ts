@@ -11,7 +11,7 @@ describe('Three of kind rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new ThreeOfKind(4).satisfiesTheRule(cards)).toBe(false);
+    expect(new ThreeOfKind(4).ruleSatisfied(cards)).toBe(false);
   })
 
   test("satisfy the rule", () => {
@@ -23,6 +23,6 @@ describe('Three of kind rule', () => {
       new PokerCard("3s")
     ]
 
-    expect(new ThreeOfKind(4).satisfiesTheRule(cards)).toBe(true);
+    expect(new ThreeOfKind(4).ruleSatisfied(cards)).toBe(true);
   })
 })

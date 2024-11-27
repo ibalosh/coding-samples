@@ -11,7 +11,7 @@ describe('Two pair rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new TwoPairs(2).satisfiesTheRule(cards)).toBe(false);
+    expect(new TwoPairs(2).ruleSatisfied(cards)).toBe(false);
   })
 
   test("satisfy the rule", () => {
@@ -23,6 +23,6 @@ describe('Two pair rule', () => {
       new PokerCard("2s")
     ]
 
-    expect(new TwoPairs(2).satisfiesTheRule(cards)).toBe(true);
+    expect(new TwoPairs(2).ruleSatisfied(cards)).toBe(true);
   })
 })

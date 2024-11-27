@@ -1,4 +1,4 @@
-import {Card} from "../../card/Card";
+import Card from "../../card/Card";
 
 export abstract class CardRule {
   readonly score: number;
@@ -6,5 +6,5 @@ export abstract class CardRule {
     this.score = score;
   }
 
-  abstract satisfiesTheRule(cards:Card[]): boolean;
+  abstract ruleSatisfied(cards:Card[]): boolean;
 }

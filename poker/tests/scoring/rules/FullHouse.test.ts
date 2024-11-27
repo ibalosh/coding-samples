@@ -12,7 +12,7 @@ describe('Full house rule', () => {
       new PokerCard("4h")
     ]
 
-    expect(new FullHouse(7).satisfiesTheRule(cards)).toBe(false);
+    expect(new FullHouse(7).ruleSatisfied(cards)).toBe(false);
   })
 
   test("satisfy the rule", () => {
@@ -24,6 +24,6 @@ describe('Full house rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new FullHouse(7).satisfiesTheRule(cards)).toBe(true);
+    expect(new FullHouse(7).ruleSatisfied(cards)).toBe(true);
   })
 })
