@@ -1,72 +1,37 @@
-import {CardRule} from "./rules";
-import Player from "./Player";
-import {Card} from "./Card";
-import {CardGameFactory} from "./factories";
+import CardFactory from "./factories/CardFactory";
+import CardRules from "./scoring/CardRules";
+import CardScoreEvaluator from "./scoring/CardScoreEvaluator";
+import GameScore from "./GameScore";
+import Players from "./Players";
 
 export default class Game {
-  public cards: Card[];
-  public players: Player[];
-  private cardGameFactory: CardGameFactory;
-  private cardRules: CardRule[];
+  public players: Players;
+  private readonly cardFactory: CardFactory;
+  private readonly playerScoreCalculator: GameScore;
 
-  constructor(cardGameFactory: CardGameFactory) {
-    this.cards = [];
-    this.cardGameFactory = cardGameFactory;
-    this.cardRules = this.cardGameFactory.createRules();
-    this.players = [];
+  constructor(cardRules: CardRules, cardFactory: CardFactory) {
+    this.cardFactory = cardFactory;
+    this.playerScoreCalculator = new GameScore(new CardScoreEvaluator(cardRules));
+    this.players = new Players();
   }
 
-  addPlayer(player: Player) {
-    this.players.push(player);
+  addPlayer(playerName: string) {
+    this.players.add(playerName);
   }
 
-  addCards(cards: string[], player: Player) {
-    const playerFound = this.findPlayer(player);
+  addCards(cards: string[], playerName: string) {
+    const player = this.players.findByName(playerName);
+    const cardsToAdd = cards.map(card => this.cardFactory.createCard(card));
 
-    if (playerFound === undefined)
-      throw new Error("Player not found");
-
-    playerFound.addCards(this.cardGameFactory.createHand(cards));
+    player.addCards(cardsToAdd);
   }
 
-  calculateScore(player: Player) {
-    if (!this.findPlayer(player))
-      throw new Error("Player not found");
-
-    const foundPlayer = this.findPlayer(player)
-    if (!foundPlayer?.cards)
-      throw new Error("Player has no cards");
-
-    for(let i = 0; i < this.cardRules.length; i++) {
-      const score = this.cardRules[i].calculateScore(foundPlayer.cards)
-      if (score > 0)
-        return score;
-    }
-
-    return 0;
-  }
-
-  calculateWinner() {
-    if (this.players.length === 0)
-      return null;
-
-    let winner = this.players[0];
-    let score = this.calculateScore(winner);
-
-    for (let i = 1; i < this.players.length; i++) {
-      const player = this.players[i];
-      const playerScore = this.calculateScore(player);
-
-      if (playerScore > score) {
-        winner = player;
-        score = playerScore;
-      }
-    }
-
-    return winner;
-  }
-
-  private findPlayer(player: Player) {
-    return this.players.find(p => p === player);
+  /**
+   * Find winners of the game based on the rank and value of the cards.
+   *
+   * @returns Names of the players with the highest score
+   */
+  findWinners(): string[] {
+    return this.playerScoreCalculator.findPlayersWithHighestScore(this.players.all());
   }
 }

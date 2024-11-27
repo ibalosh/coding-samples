@@ -1,3 +1,2 @@
-export * from "./CardRulesFactory"
-export * from "./CardsHandFactory"
-export * from "./CardGameFactory"
+export * from './CardFactory';
+export * from './PokerCardFactory';
