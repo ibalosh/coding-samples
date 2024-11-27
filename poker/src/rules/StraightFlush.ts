@@ -1,4 +1,4 @@
-import {Card} from "../Card";
+import {Card} from "../card/Card";
 import {Straight} from "./Straight";
 
 export class StraightFlush extends Straight {

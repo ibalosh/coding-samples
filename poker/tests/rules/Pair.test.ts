@@ -1,4 +1,4 @@
-import {PokerCard} from "../../src/PokerCard";
+import {PokerCard} from "../../src/card/PokerCard";
 import {Pair} from "../../src/rules";
 
 describe('Pair rule', () => {

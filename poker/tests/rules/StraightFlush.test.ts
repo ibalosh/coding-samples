@@ -1,4 +1,4 @@
-import {PokerCard} from "../../src/PokerCard";
+import {PokerCard} from "../../src/card/PokerCard";
 import {StraightFlush} from "../../src/rules";
 
 describe('Straight flush rule', () => {

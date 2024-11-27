@@ -1,6 +1,5 @@
-import {Card} from "../Card";
+import {Card, StringNumberPair} from "../card";
 import {CardRule} from "./CardRule";
-import {StringNumberPair} from "../models";
 
 export abstract class CardsOfSameKind extends CardRule {
   protected getCountsOfCardsWithSameValues(cards: Card[], numberOfCards: number): number {

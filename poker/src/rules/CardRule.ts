@@ -1,9 +1,9 @@
-import {Card} from "../Card";
+import {Card} from "../card/Card";
 
 export abstract class CardRule {
-  readonly rank: number;
-  constructor(rank: number) {
-    this.rank = rank;
+  readonly score: number;
+  constructor(score: number) {
+    this.score = score;
   }
 
   abstract satisfiesTheRule(cards:Card[]): boolean;

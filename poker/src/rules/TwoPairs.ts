@@ -1,4 +1,4 @@
-import {Card} from "../Card";
+import {Card} from "../card/Card";
 import {CardsOfSameKind} from "./CardsOfSameKind";
 
 export class TwoPairs extends CardsOfSameKind{

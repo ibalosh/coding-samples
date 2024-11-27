@@ -1,4 +1,4 @@
-import {Card} from "../Card";
+import {Card} from "../card/Card";
 import {CardRule} from "./CardRule";
 
 export class Flush extends CardRule {

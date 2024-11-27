@@ -1,4 +1,4 @@
-import {PokerCard} from "../src/PokerCard";
+import {PokerCard} from "../src/card/PokerCard";
 
 describe("PokerCard", () => {
   test("valid card with number as a value and string suit", () => {

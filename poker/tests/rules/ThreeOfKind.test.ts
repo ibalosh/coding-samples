@@ -1,4 +1,4 @@
-import {PokerCard} from "../../src/PokerCard";
+import {PokerCard} from "../../src/card/PokerCard";
 import {ThreeOfKind} from "../../src/rules";
 
 describe('Three of kind rule', () => {

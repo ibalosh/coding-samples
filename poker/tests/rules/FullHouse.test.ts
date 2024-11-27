@@ -1,4 +1,4 @@
-import {PokerCard} from "../../src/PokerCard";
+import {PokerCard} from "../../src/card/PokerCard";
 import {FullHouse} from "../../src/rules";
 
 describe('Full house rule', () => {

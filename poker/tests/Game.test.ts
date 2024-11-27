@@ -1,7 +1,7 @@
 import Game from "../src/Game";
 import Player from "../src/Player";
-import {PokerRules} from "../src/CardRules";
-import {PokerCardFactory} from "../src/CardFactory";
+import {PokerRules} from "../src/PokerRules";
+import {PokerCardFactory} from "../src/factories";
 
 describe("Game", () => {
   const player = new Player("John Smith");

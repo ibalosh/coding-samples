@@ -1,13 +1,13 @@
 import {CardRule} from "./rules";
 import Player from "./Player";
-import {CardFactory} from "./CardFactory";
+import {CardFactory} from "./factories/CardFactory";
 import {CardRules} from "./CardRules";
 import {calculateScore} from "./CardCombinaton";
 
 export default class Game {
   public players: Player[];
-  private cardFactory: CardFactory;
-  private cardRules: CardRules;
+  private readonly cardFactory: CardFactory;
+  private readonly cardRules: CardRules;
 
   constructor(cardRules: CardRules, cardFactory: CardFactory) {
     this.cardFactory = cardFactory;
@@ -33,7 +33,7 @@ export default class Game {
    */
   calculateHandRank(playerByName: string) {
     const player = this.findPlayerByName(playerByName);
-    return this.cardRules.retrieveIdentifiedRule(player.cards)?.rank || 0;
+    return this.cardRules.retrieveHighestScoringRule(player.cards)?.score || 0;
   }
 
   /**
