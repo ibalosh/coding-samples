@@ -1,13 +1,13 @@
-import Game from "../src/Game";
+import Pokergame from "../src/Game";
 import Player from "../src/Player";
-import {PokerRules} from "../src/PokerRules";
+import {PokerRules} from "../src/scoring/PokerRules";
 import {PokerCardFactory} from "../src/factories";
 
 describe("Game", () => {
   const player = new Player("John Smith");
 
   test("add valid number of cards", () => {
-    const game = new Game(new PokerRules(), new PokerCardFactory());
+    const game = new Pokergame(new PokerRules(), new PokerCardFactory());
     game.addPlayer(player)
 
     expect(
@@ -16,7 +16,7 @@ describe("Game", () => {
   })
 
   test("add cards to not yet existing player", () => {
-    const game = new Game(new PokerRules(), new PokerCardFactory());
+    const game = new Pokergame(new PokerRules(), new PokerCardFactory());
 
     expect(
       () => game.addCards(["Qd","7s","5h","3c","Ts"], "Jane Doe")
@@ -24,7 +24,7 @@ describe("Game", () => {
   })
 
   test("add cards to non existing player", () => {
-    const game = new Game(new PokerRules(), new PokerCardFactory());
+    const game = new Pokergame(new PokerRules(), new PokerCardFactory());
     game.addPlayer(player)
 
     expect(
@@ -33,7 +33,7 @@ describe("Game", () => {
   })
 
   test("identify winner", () => {
-    const game = new Game(new PokerRules(), new PokerCardFactory());
+    const game = new Pokergame(new PokerRules(), new PokerCardFactory());
     const players = [
       new Player("John Smith"),
       new Player("Jane Doe"),
@@ -51,7 +51,7 @@ describe("Game", () => {
   })
 
   test("identify multiple winners", () => {
-    const game = new Game(new PokerRules(), new PokerCardFactory());
+    const game = new Pokergame(new PokerRules(), new PokerCardFactory());
     const players = [
       new Player("John Smith"),
       new Player("Jane Doe"),
@@ -70,13 +70,13 @@ describe("Game", () => {
   })
 
   test("identify winner when players are not set", () => {
-    const game = new Game(new PokerRules(), new PokerCardFactory());
+    const game = new Pokergame(new PokerRules(), new PokerCardFactory());
     expect(game.calculateWinner()).toEqual([]);
   })
 
   describe("calculate score", () => {
     test("identify high card", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["Qd","7s","5h","3c","Ts"], player.name);
       
@@ -84,7 +84,7 @@ describe("Game", () => {
     })
 
     test("identify pair", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["3d","3s","4h","6d","7d"], player.name);
 
@@ -92,7 +92,7 @@ describe("Game", () => {
     })
 
     test("identify two pairs", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["3d","3s","6h","6d","7d"], player.name);
 
@@ -100,7 +100,7 @@ describe("Game", () => {
     })
 
     test("identify three of kind", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["3d","3s","3h","6d","7d"], player.name);
 
@@ -108,7 +108,7 @@ describe("Game", () => {
     })
 
     test("identify straight", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["3d","4s","5h","6d","7d"], player.name);
 
@@ -116,7 +116,7 @@ describe("Game", () => {
     })
 
     test("identify flush", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["9d","9d","9d","5d","2d"], player.name);
 
@@ -124,7 +124,7 @@ describe("Game", () => {
     })
 
     test("identify full house", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["9d","9d","9d","2d","2s"],player.name);
 
@@ -132,7 +132,7 @@ describe("Game", () => {
     })
 
     test("identify four kind", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["9d","9d","9d","9d","Jd"],player.name);
 
@@ -140,7 +140,7 @@ describe("Game", () => {
     })
 
     test("identify straight flush", () => {
-      const game = new Game(new PokerRules(), new PokerCardFactory());
+      const game = new Pokergame(new PokerRules(), new PokerCardFactory());
       game.addPlayer(player)
       game.addCards(["7d","8d","9d","Td","Jd"],player.name);
 

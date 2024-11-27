@@ -1,4 +1,4 @@
-import {Card} from "../card/Card";
+import {Card} from "../../card/Card";
 import {CardRule} from "./CardRule";
 
 export class Straight extends CardRule {

@@ -1,5 +1,5 @@
 import {PokerCard} from "../../src/card/PokerCard";
-import {ThreeOfKind} from "../../src/rules";
+import {ThreeOfKind} from "../../src/scoring/rules";
 
 describe('Three of kind rule', () => {
   test("not satisfy the rule", () => {

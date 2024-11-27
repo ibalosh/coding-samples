@@ -1,5 +1,5 @@
 import {PokerCard} from "../../src/card/PokerCard";
-import {StraightFlush} from "../../src/rules";
+import {StraightFlush} from "../../src/scoring/rules";
 
 describe('Straight flush rule', () => {
   test("not satisfied the rule", () => {

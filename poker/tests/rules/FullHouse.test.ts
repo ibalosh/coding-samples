@@ -1,5 +1,5 @@
 import {PokerCard} from "../../src/card/PokerCard";
-import {FullHouse} from "../../src/rules";
+import {FullHouse} from "../../src/scoring/rules";
 
 describe('Full house rule', () => {
 

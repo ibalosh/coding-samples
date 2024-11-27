@@ -1,5 +1,5 @@
 import {PokerCard} from "../../src/card/PokerCard";
-import {FourOfKind} from "../../src/rules";
+import {FourOfKind} from "../../src/scoring/rules";
 
 describe('Four of kind rule', () => {
   test("not satisfy the rule", () => {

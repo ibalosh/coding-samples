@@ -1,17 +1,16 @@
-import {CardRule} from "./rules";
 import Player from "./Player";
 import {CardFactory} from "./factories/CardFactory";
-import {CardRules} from "./CardRules";
-import CardsEvaluator, {CardsScore} from "./CardsEvaluator";
+import {CardRules} from "./scoring/CardRules";
+import CardCombinationEvaluator, {CardsScore} from "./CardCombinationEvaluator";
 
 export default class Game {
   public players: Player[];
   private readonly cardFactory: CardFactory;
-  private readonly cardsEvaluator: CardsEvaluator;
+  private readonly cardsEvaluator: CardCombinationEvaluator;
 
   constructor(cardRules: CardRules, cardFactory: CardFactory) {
     this.cardFactory = cardFactory;
-    this.cardsEvaluator = new CardsEvaluator(cardRules);
+    this.cardsEvaluator = new CardCombinationEvaluator(cardRules);
     this.players = [];
   }
 

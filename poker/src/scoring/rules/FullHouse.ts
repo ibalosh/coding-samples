@@ -1,7 +1,7 @@
-import {Card} from "../card/Card";
+import {Card} from "../../card/Card";
 import {CardRule} from "./CardRule";
 
-import {StringNumberPair} from "../card/CardType";
+import {StringNumberPair} from "../../card/CardType";
 
 export class FullHouse extends CardRule {
   satisfiesTheRule(cards: Card[]) {

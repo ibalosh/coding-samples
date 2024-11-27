@@ -1,12 +1,12 @@
 import {Card} from "./card";
-import {CardRules} from "./CardRules";
+import {CardRules} from "./scoring/CardRules";
 
 export interface CardsScore {
   scoreByValue: number;
   scoreByRank: number;
 }
 
-export default class CardsEvaluator {
+export default class CardCombinationEvaluator {
   private readonly cardRules: CardRules;
 
   constructor(cardRules: CardRules) {

@@ -1,4 +1,4 @@
-import {Card} from "../card/Card";
+import {Card} from "../../card/Card";
 
 export abstract class CardRule {
   readonly score: number;

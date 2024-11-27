@@ -1,5 +1,5 @@
-import {CardRule} from "./rules";
-import {Card} from "./card/Card";
+import {CardRule} from "./rules/CardRule";
+import {Card} from "../card/Card";
 
 export class CardRules {
   cardRules: CardRule[] = [];

@@ -1,5 +1,5 @@
 import {PokerCard} from "../../src/card/PokerCard";
-import {TwoPairs} from "../../src/rules";
+import {TwoPairs} from "../../src/scoring/rules";
 
 describe('Two pair rule', () => {
   test("not satisfy the rule", () => {

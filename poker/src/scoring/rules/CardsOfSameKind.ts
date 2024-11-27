@@ -1,4 +1,4 @@
-import {Card, StringNumberPair} from "../card";
+import {Card, StringNumberPair} from "../../card";
 import {CardRule} from "./CardRule";
 
 export abstract class CardsOfSameKind extends CardRule {
