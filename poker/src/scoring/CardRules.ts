@@ -19,7 +19,7 @@ export class CardRules {
     return ruleWithHighestScore;
   };
 
-  add(cardRule: CardRule) {
+  addRule(cardRule: CardRule) {
     this.cardRules.push(cardRule);
   }
 }

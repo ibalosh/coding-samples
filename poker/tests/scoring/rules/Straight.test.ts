@@ -1,5 +1,5 @@
-import {PokerCard} from "../../src/card/PokerCard";
-import {Straight} from "../../src/scoring/rules";
+import {PokerCard} from "../../../src/card/PokerCard";
+import {Straight} from "../../../src/scoring/rules";
 
 describe('Straight rule', () => {
   test("not satisfied the rule", () => {

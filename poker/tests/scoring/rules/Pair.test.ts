@@ -1,5 +1,5 @@
-import {PokerCard} from "../../src/card/PokerCard";
-import {Pair} from "../../src/scoring/rules";
+import {PokerCard} from "../../../src/card/PokerCard";
+import {Pair} from "../../../src/scoring/rules";
 
 describe('Pair rule', () => {
   test("not satisfy the rule", () => {

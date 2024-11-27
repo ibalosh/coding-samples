@@ -1,7 +1,7 @@
-import {PokerCard} from "../../src/card/PokerCard";
-import {FourOfKind} from "../../src/scoring/rules";
+import {PokerCard} from "../../../src/card/PokerCard";
+import {Flush} from "../../../src/scoring/rules";
 
-describe('Four of kind rule', () => {
+describe('Flush rule', () => {
   test("not satisfy the rule", () => {
     const cards = [
       new PokerCard("0s"),
@@ -11,7 +11,7 @@ describe('Four of kind rule', () => {
       new PokerCard("3h")
     ]
 
-    expect(new FourOfKind(8).satisfiesTheRule(cards)).toBe(false);
+    expect(new Flush(6).satisfiesTheRule(cards)).toBe(false);
   })
 
   test("satisfy the rule", () => {
@@ -19,10 +19,10 @@ describe('Four of kind rule', () => {
       new PokerCard("0s"),
       new PokerCard("0s"),
       new PokerCard("0s"),
-      new PokerCard("0s"),
+      new PokerCard("3s"),
       new PokerCard("3s")
     ]
 
-    expect(new FourOfKind(8).satisfiesTheRule(cards)).toBe(true);
+    expect(new Flush(6).satisfiesTheRule(cards)).toBe(true);
   })
 })
